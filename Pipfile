@@ -8,10 +8,11 @@ name = "pypi"
 [packages]
 
 click = "*"
-Flask = "*"
-"Jinja2" = "*"
-Flask-SQLAlchemy = "*"
-PyMySQL = "*"
+flask = "*"
+"jinja2" = "*"
+flask-sqlalchemy = "*"
+pymysql = "*"
+gunicorn = "*"
 
 
 [dev-packages]

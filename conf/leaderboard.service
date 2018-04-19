@@ -1,0 +1,11 @@
+[Unit]
+Description=simple leaderboard
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/code/leaderboard
+ExecStart=/usr/local/bin/pipenv run gunicorn -c /code/leaderboard/conf/gunicorn_conf.py wsgi:app
+
+[Install]
+WantedBy=multi-user.target
