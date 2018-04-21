@@ -17,7 +17,7 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        'leaderboard',
+        'record',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('user_id', sa.String(length=100),
                   nullable=False),

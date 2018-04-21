@@ -1,19 +1,19 @@
 from flask import Blueprint, request, jsonify
-from leaderboard.models import db, Leaderboard
+from leaderboard.models import db, Record
 
 bp = Blueprint('api', __name__)
 
 
 @bp.route('/summary')
 def summary():
-    tops = Leaderboard.query.order_by(Leaderboard.score.desc()) \
+    tops = Record.query.order_by(Record.score.desc()) \
         .limit(100).all()
     rv = dict(tops=tops)
     me = request.args.get('me')
     if me:
-        me = Leaderboard.query.filter_by(user_id=me).first()
+        me = Record.query.filter_by(user_id=me).first()
         if me:
-            ahead = Leaderboard.query.filter(Leaderboard.score > me.score) \
+            ahead = Record.query.filter(Record.score > me.score) \
                 .count()
             rv['me'] = dict(**me.to_dict(), rank=ahead + 1)
     return jsonify(rv)
@@ -26,9 +26,9 @@ def submit():
     user_name = payload['user_name']
     score = payload['score']
 
-    src = Leaderboard.query.filter_by(user_id=user_id).first()
+    src = Record.query.filter_by(user_id=user_id).first()
     if not src:
-        src = Leaderboard()
+        src = Record()
     src.user_name = user_name
     src.score = score
     src.user_id = user_id

@@ -1,5 +1,5 @@
 from .base import db
-from .leaderboard import Leaderboard
+from .record import Record
 
 
 def init_app(app):

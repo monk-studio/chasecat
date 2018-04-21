@@ -13,9 +13,9 @@ flask = "*"
 flask-sqlalchemy = "*"
 pymysql = "*"
 gunicorn = "*"
-"fabric3" = "*"
 flask-alembic = "*"
 
 
 [dev-packages]
 
+"fabric3" = "*"

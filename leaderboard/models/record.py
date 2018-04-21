@@ -3,7 +3,7 @@ from sqlalchemy import Column
 from sqlalchemy import Integer, String
 
 
-class Leaderboard(db.Model):
+class Record(db.Model):
     id = Column(Integer, primary_key=True)
     user_id = Column(String(100), unique=True, nullable=False)
     user_name = Column(String(20), nullable=False)
