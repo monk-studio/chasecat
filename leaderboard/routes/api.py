@@ -12,8 +12,10 @@ def summary():
     me = request.args.get('me')
     if me:
         me = Leaderboard.query.filter_by(user_id=me).first()
-        ahead = Leaderboard.query.filter(Leaderboard.score > me.score).count()
-        rv['me'] = dict(**me.to_dict(), rank=ahead + 1)
+        if me:
+            ahead = Leaderboard.query.filter(Leaderboard.score > me.score) \
+                .count()
+            rv['me'] = dict(**me.to_dict(), rank=ahead + 1)
     return jsonify(rv)
 
 
