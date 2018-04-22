@@ -33,7 +33,7 @@ def submit():
     c = AES.new(current_app.config['SHA256_KEY'], AES.MODE_CBC,
                 current_app.config['SHA256_IV'])
     raw = base64.b64decode(score)
-    raw = unpad(c.decrypt(raw), 16)
+    raw = unpad(c.decrypt(raw), 16).decode()
     score = int(raw)
 
     src = Record.query.filter_by(user_id=user_id).first()
