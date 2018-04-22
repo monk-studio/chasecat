@@ -14,6 +14,7 @@ flask-sqlalchemy = "*"
 pymysql = "*"
 gunicorn = "*"
 flask-alembic = "*"
+pycryptodome = "*"
 
 
 [dev-packages]

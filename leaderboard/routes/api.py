@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify
+from Crypto.Cipher import AES
+from flask import Blueprint, request, jsonify, current_app
 from leaderboard.models import db, Record
 
 bp = Blueprint('api', __name__)
@@ -25,6 +26,10 @@ def submit():
     user_id = payload['user_id']
     user_name = payload['user_name']
     score = payload['score']
+
+    c = AES.new(current_app.config['AES_KEY'], AES.MODE_CBC,
+                current_app.config['AES_IV'])
+    score = int(c.decrypt(score))
 
     src = Record.query.filter_by(user_id=user_id).first()
     if not src:

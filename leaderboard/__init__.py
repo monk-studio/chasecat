@@ -26,6 +26,9 @@ def create_app():
     base_settings = os.path.join(app.root_path, '../conf/base_settings.py')
     app.config.from_pyfile(base_settings)
 
+    local_settings = os.path.join(app.root_path, '../local_settings.py')
+    app.config.from_pyfile(local_settings)
+
     routes.init_app(app)
     models.init_app(app)
     return app
