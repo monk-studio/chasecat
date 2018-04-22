@@ -27,8 +27,8 @@ def submit():
     user_name = payload['user_name']
     score = payload['score']
 
-    c = AES.new(current_app.config['AES_KEY'], AES.MODE_CBC,
-                current_app.config['AES_IV'])
+    c = AES.new(current_app.config['SHA256_KEY'], AES.MODE_CBC,
+                current_app.config['SHA256_IV'])
     score = int(c.decrypt(score))
 
     src = Record.query.filter_by(user_id=user_id).first()
