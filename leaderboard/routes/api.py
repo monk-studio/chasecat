@@ -1,6 +1,7 @@
 import base64
 
 from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
 from flask import Blueprint, request, jsonify, current_app
 from leaderboard.models import db, Record
 
@@ -31,7 +32,9 @@ def submit():
 
     c = AES.new(current_app.config['SHA256_KEY'], AES.MODE_CBC,
                 current_app.config['SHA256_IV'])
-    score = int(c.decrypt(base64.b64decode(score)))
+    raw = base64.b64decode(score)
+    raw = unpad(c.decrypt(raw), 16)
+    score = int(raw)
 
     src = Record.query.filter_by(user_id=user_id).first()
     if not src:
