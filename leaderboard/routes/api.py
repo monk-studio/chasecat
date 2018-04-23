@@ -11,7 +11,7 @@ bp = Blueprint('api', __name__)
 @bp.route('/summary')
 def summary():
     tops = Record.query.order_by(Record.score.desc()) \
-        .limit(100).all()
+        .limit(50).all()
     rv = dict(tops=tops)
     me = request.args.get('me')
     if me:
@@ -19,6 +19,14 @@ def summary():
         if me:
             ahead = Record.query.filter(Record.score > me.score) \
                 .count()
+
+            def sort(x):
+                if x.score == me.score:
+                    return x.score + 0.1 if x.id == me.id else x.score
+                else:
+                    return x.score
+
+            rv['tops'] = sorted(tops, key=sort, reverse=True)
             rv['me'] = dict(**me.to_dict(), rank=ahead + 1)
     return jsonify(rv)
 
