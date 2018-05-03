@@ -4,7 +4,7 @@ from flask_alembic import Alembic
 
 
 def _create_flask_app(_):
-    from leaderboard import create_app
+    from chasecat import create_app
     app = create_app()
     Alembic(app)
     return app

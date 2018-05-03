@@ -1,3 +1,3 @@
-from leaderboard import create_app
+from chasecat import create_app
 
 app = create_app()

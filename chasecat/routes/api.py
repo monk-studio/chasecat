@@ -3,7 +3,7 @@ import base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 from flask import Blueprint, request, jsonify, current_app
-from leaderboard.models import db, Record
+from chasecat.models import db, Record
 
 bp = Blueprint('api', __name__)
 

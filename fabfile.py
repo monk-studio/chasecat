@@ -6,7 +6,7 @@ env.hosts = ['duan-p0']
 
 
 def deploy():
-    with cd('/code/leaderboard'):
+    with cd('/code/chasecat'):
         run('git pull origin master')
         run('pipenv install')
         run('pipenv run python manage.py db upgrade')

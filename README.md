@@ -1,3 +1,3 @@
-# leaderboard
+# Chase cat Server
 
-Simple leaderboard API server based on Flask and SQLite
+Server for the game chasecat
