@@ -1,4 +1,7 @@
-{% set title = "Let's chase cat" %}
+{% set title = "Invitation from " + record.user_name %}
+{% set desc = record.score | string + " is " + record.user_name + "'s best score, now No. " + record.rank | string + " in the world" %}
+{% set og_img = 'https://chasecat.monk-studio.com/og.png' %}
+{% set twitter_img = 'https://chasecat.monk-studio.com/twitter-card.png' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,9 +46,6 @@
     background: linear-gradient(transparent, black);
   }
 
-  {#.dl-collection {#}
-  {#  margin-top: 32px;#}
-
   .dl {
     display: inline-block;
     height: 40px;
@@ -54,19 +54,19 @@
   .dl__ios {
     width: 120px;
     margin-right: 16px;
-    background-image: url("/static/app-store.svg");
+    background-image: url("/app-store.svg");
   }
 
   .dl__android {
     width: 135px;
-    background-image: url("/static/google-play.svg");
+    background-image: url("/google-play.svg");
   }
 
   .cats {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("/static/cats.png");
+    background-image: url("/cats.png");
     background-position: center;
     background-size: cover;
   }
@@ -74,7 +74,27 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Invitation from {{ record.user_name }}</title>
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ desc }}">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@wddwycc"/>
+  <meta name="twitter:creator" content="@wddwycc"/>
+  <meta name="twitter:title" content="{{ title }}"/>
+  <meta name="twitter:description" content="{{ desc }}"/>
+  <meta name="twitter:image" content="{{ twitter_img }}"/>
+  <meta property="og:url" content="https://chasecat.monk-studio.com/invite/{{ record.user_id }}"/>
+  <meta property="og:title" content="{{ title }}"/>
+  <meta property="og:description" content="{{ desc }}"/>
+  <meta property="og:image" content="{{ og_img }}"/>
 </head>
 <body>
 <div class="canvas">
@@ -87,7 +107,7 @@
 
     <h1>Join the game</h1>
 
-    <div class="dl-collection">
+    <div>
       <a class="dl dl__ios" href="https://itunes.apple.com/us/app/chase-cat/id1376011304" target="_blank"></a>
       <a class="dl dl__android" href="https://play.google.com/store/apps/details?id=com.monk_studio.chase_cat" target="_blank"></a>
     </div>

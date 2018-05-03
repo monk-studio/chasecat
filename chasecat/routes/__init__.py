@@ -2,7 +2,7 @@ from . import api, front
 
 
 def init_app(app):
-    @app.route('/static/<path:path>')
+    @app.route('/<path:path>')
     def static_file(path):
         return app.send_static_file(path)
 
