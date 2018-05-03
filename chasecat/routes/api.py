@@ -17,9 +17,6 @@ def summary():
     if me:
         me = Record.query.filter_by(user_id=me).first()
         if me:
-            ahead = Record.query.filter(Record.score > me.score) \
-                .count()
-
             def sort(x):
                 if x.score == me.score:
                     return x.score + 0.1 if x.id == me.id else x.score
@@ -27,7 +24,7 @@ def summary():
                     return x.score
 
             rv['tops'] = sorted(tops, key=sort, reverse=True)
-            rv['me'] = dict(**me.to_dict(), rank=ahead + 1)
+            rv['me'] = dict(**me.to_dict(), rank=me.rank)
     return jsonify(rv)
 
 

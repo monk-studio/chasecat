@@ -9,6 +9,12 @@ class Record(db.Model):
     user_name = Column(String(20), nullable=False)
     score = Column(Integer, nullable=False)
 
+    @property
+    def rank(self):
+        ahead = Record.query.filter(Record.score > self.score) \
+            .count()
+        return ahead + 1
+
     def to_dict(self):
         return dict(
             name=self.user_name,

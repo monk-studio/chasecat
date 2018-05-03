@@ -1,4 +1,4 @@
-{% set title = 'Chase Cat' %}
+{% set title = "Let's chase cat" %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,40 @@
   }
 
   body {
-    margin: 16px;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  span {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 16px;
   }
 
   .canvas {
+    position: relative;
+    min-height: 100vh;
     max-width: 640px;
     margin: 0 auto;
   }
+
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 16px;
+    background: linear-gradient(transparent, black);
+  }
+
+  {#.dl-collection {#}
+  {#  margin-top: 32px;#}
 
   .dl {
     display: inline-block;
@@ -28,35 +55,42 @@
     width: 120px;
     margin-right: 16px;
     background-image: url("/static/app-store.svg");
-    -webkit-background-image: url("/static/app-store.svg");
-    -o-background-image: url("/static/app-store.svg");
-    -moz-background-image: url("/static/app-store.svg");
   }
 
   .dl__android {
     width: 135px;
     background-image: url("/static/google-play.svg");
-    -webkit-background-image: url("/static/google-play.svg");
-    -o-background-image: url("/static/google-play.svg");
-    -moz-background-image: url("/static/google-play.svg");
+  }
+
+  .cats {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("/static/cats.png");
+    background-position: center;
+    background-size: cover;
   }
 </style>
 
 <head>
   <meta charset="UTF-8">
-  <title>{{ title }}</title>
+  <title>Invitation from {{ record.user_name }}</title>
 </head>
 <body>
-
 <div class="canvas">
-  <h1>{{ title }}</h1>
+  <div class="cats"></div>
 
-  <p>{{ record.user_name }} reached {{ record.score }}</p>
-  <p>invite you to join the game</p>
+  <div class="bottom">
+    <p><span>{{ record.score }}</span></p>
+    <p>is {{ record.user_name }}'s best score, now No. {{ record.rank }} in the world</p>
+    <p>share this page to your friends!</p>
 
-  <div>
-    <a class="dl dl__ios" href="https://itunes.apple.com/us/app/chase-cat/id1376011304" target="_blank"></a>
-    <a class="dl dl__android" href="https://play.google.com/store/apps/details?id=com.monk_studio.chase_cat" target="_blank"></a>
+    <h1>Join the game</h1>
+
+    <div class="dl-collection">
+      <a class="dl dl__ios" href="https://itunes.apple.com/us/app/chase-cat/id1376011304" target="_blank"></a>
+      <a class="dl dl__android" href="https://play.google.com/store/apps/details?id=com.monk_studio.chase_cat" target="_blank"></a>
+    </div>
   </div>
 </div>
 
